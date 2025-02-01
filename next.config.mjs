@@ -7,6 +7,9 @@ const withMDX = mdx({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    reactCompiler: true,
+  },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
 };
 
