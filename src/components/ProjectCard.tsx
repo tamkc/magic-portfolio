@@ -9,6 +9,7 @@ import {
   SmartLink,
   Text,
 } from "@/once-ui/components";
+import { PreviewLink } from "@/once-ui/components/PreviewLink";
 
 interface ProjectCardProps {
   href: string;
@@ -73,13 +74,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </SmartLink>
               )}
               {link && (
-                <SmartLink
+                <PreviewLink
                   suffixIcon="arrowUpRightFromSquare"
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
                 >
                   <Text variant="body-default-s">View project</Text>
-                </SmartLink>
+                </PreviewLink>
               )}
             </Flex>
           </Column>

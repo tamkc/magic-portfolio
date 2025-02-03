@@ -6,6 +6,7 @@ module.exports = {
         files: ["src/once-ui/styles/breakpoints.scss"],
       },
     ],
+    "@tailwindcss/postcss",
     "postcss-custom-media",
     "postcss-flexbugs-fixes",
     [
