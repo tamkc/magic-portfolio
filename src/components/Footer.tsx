@@ -27,13 +27,12 @@ export const Footer = () => {
           <Text onBackground="neutral-weak">© {currentYear} /</Text>
           <Text paddingX="4">{person.name}</Text>
           <Text onBackground="neutral-weak">
-            / Build your portfolio with{" "}
-            <SmartLink
-              style={{ marginLeft: "-0.125rem" }}
-              href="https://once-ui.com/templates/magic-portfolio"
+            / Get in Touch{" "}
+            <a className="ml-1"
+              href="mailto:tamkc1999@gmail.com"
             >
-              Once UI
-            </SmartLink>
+              tamkc1999@gmail.com
+            </a>
           </Text>
         </Text>
         <Flex gap="16">

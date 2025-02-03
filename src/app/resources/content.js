@@ -45,7 +45,7 @@ const social = [
   {
     name: "Email",
     icon: "email",
-    link: "mailto:example@gmail.com",
+    link: "mailto:tamkc1999@gmail.com",
   },
 ];
 
@@ -92,10 +92,10 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based FullStack Developer with a passion for
-        transforming complex challenges into simple, elegant design solutions.
-        Her work spans digital interfaces, interactive experiences, and the
-        convergence of design and technology.
+        Peter is a Canada-based FullStack Developer with a passion for
+        innovative technologies and user-centric design. He has over 3 years of
+        experience in the industry and has worked on a variety of projects, from
+        small startups to large corporations.
       </>
     ),
   },
@@ -104,9 +104,9 @@ const about = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior FullStack Developer",
+        company: "Hung Hing Printing Group Limited",
+        timeframe: "2023 - Present",
+        role: "Senior Porgrammer",
         achievements: [
           <>
             Redesigned the UI/UX for the FLY platform, resulting in a 20%
@@ -128,9 +128,9 @@ const about = {
         ],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "At-Vibe Technology Limited",
+        timeframe: "2022 - 2023",
+        role: "Software Engineer",
         achievements: [
           <>
             Developed a design system that unified the brand across multiple
@@ -150,12 +150,17 @@ const about = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "The Hong Kong Polytechnic University",
+        description: (
+          <>
+            Bachelor of Engineering (Honours) in Industrial and Systems
+            Engineering
+          </>
+        ),
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Hong Kong Community College",
+        description: <>Associate in Engineering</>,
       },
     ],
   },
