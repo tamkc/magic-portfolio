@@ -59,20 +59,21 @@ const PreviewLink = forwardRef<HTMLAnchorElement, PreviewLinkProps>(
       ),
       style: !unstyled
         ? {
-            ...(selected && {
-              textDecoration: "underline",
-            }),
-            ...style,
-          }
+          ...(selected && {
+            textDecoration: "underline",
+          }),
+          ...style,
+        }
         : {
-            textDecoration: "none",
-            ...style,
-          },
+          textDecoration: "none",
+          ...style,
+        },
       ...props,
     };
 
     return (
-      <LinkPreview url={href} {...commonProps}>
+      <LinkPreview url={href} target="_blank"
+        {...commonProps}>
         {content}
       </LinkPreview>
     );
