@@ -5,11 +5,17 @@ const withMDX = mdx({
   options: {},
 });
 
+const isProd = process.env.NODE_ENV === "production";
+const basePathValue = isProd ? "/magic-portfolio" : "";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/magic-portfolio",
-  assetPrefix: "/magic-portfolio",
+  basePath: basePathValue,
+  assetPrefix: basePathValue,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePathValue,
+  },
   experimental: {
     reactCompiler: true,
   },

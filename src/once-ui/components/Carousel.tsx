@@ -3,6 +3,16 @@
 import { Flex, RevealFx, Scroller, SmartImage } from "@/once-ui/components";
 import { useEffect, useState, useRef } from "react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+function resolveImagePath(src: string): string {
+  if (!basePath) return src;
+  if (src.startsWith("/") && !src.startsWith(basePath)) {
+    return `${basePath}${src}`;
+  }
+  return src;
+}
+
 interface Image {
   src: string;
   alt: string;
@@ -33,7 +43,7 @@ const Carousel: React.FC<CarouselProps> = ({
   const preloadNextImage = (nextIndex: number) => {
     if (nextIndex >= 0 && nextIndex < images.length) {
       nextImageRef.current = new Image();
-      nextImageRef.current.src = images[nextIndex].src;
+      nextImageRef.current.src = resolveImagePath(images[nextIndex].src);
     }
   };
 

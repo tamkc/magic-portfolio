@@ -5,6 +5,16 @@ import Image from "next/image";
 
 import { Flex, Skeleton } from "@/once-ui/components";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+function resolveImagePath(src: string): string {
+  if (!basePath) return src;
+  if (src.startsWith("/") && !src.startsWith(basePath)) {
+    return `${basePath}${src}`;
+  }
+  return src;
+}
+
 export interface SmartImageProps extends React.ComponentProps<typeof Flex> {
   aspectRatio?: string;
   height?: number;
@@ -98,8 +108,9 @@ const SmartImage: React.FC<SmartImageProps> = ({
       : "";
   };
 
-  const isVideo = src?.endsWith(".mp4");
-  const isYouTube = isYouTubeVideo(src);
+  const resolvedSrc = resolveImagePath(src);
+  const isVideo = resolvedSrc?.endsWith(".mp4");
+  const isYouTube = isYouTubeVideo(resolvedSrc);
 
   return (
     <>
@@ -124,7 +135,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
         {isLoading && <Skeleton shape="block" />}
         {!isLoading && isVideo && (
           <video
-            src={src}
+            src={resolvedSrc}
             autoPlay
             loop
             muted
@@ -151,7 +162,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
         )}
         {!isLoading && !isVideo && !isYouTube && (
           <Image
-            src={src}
+            src={resolvedSrc}
             alt={alt}
             priority={priority}
             sizes={sizes}
@@ -191,7 +202,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
           >
             {isVideo ? (
               <video
-                src={src}
+                src={resolvedSrc}
                 autoPlay
                 loop
                 muted
@@ -204,7 +215,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
               />
             ) : (
               <Image
-                src={src}
+                src={resolvedSrc}
                 alt={alt}
                 fill
                 sizes="90vw"
