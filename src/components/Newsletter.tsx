@@ -1,5 +1,6 @@
 "use client";
 
+import { useForm, ValidationError } from "@formspree/react";
 import { newsletterConfig } from "@/app/resources";
 import { Button, Flex, Heading, Input, Text, Background, Column } from "@/once-ui/components";
 import { useState, type JSX } from "react";
@@ -19,11 +20,10 @@ type NewsletterProps = {
 };
 
 export const Newsletter = ({ newsletter }: { newsletter: NewsletterProps }) => {
+  const [state, handleSubmit] = useForm("mojdobqv");
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [touched, setTouched] = useState<boolean>(false);
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [successMessage, setSuccessMessage] = useState<string>("");
 
   const validateEmail = (email: string): boolean => {
     if (email === "") {
@@ -60,40 +60,13 @@ export const Newsletter = ({ newsletter }: { newsletter: NewsletterProps }) => {
     validateAndSetError(email);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (!validateEmail(email) || !email) {
+      e.preventDefault();
       setError("Please enter a valid email address.");
       return;
     }
-
-    setIsSubmitting(true);
-    setError("");
-    setSuccessMessage("");
-
-    try {
-      const response = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setSuccessMessage("Thank you for subscribing!");
-        setEmail("");
-      } else {
-        setError(data.message || "Something went wrong. Please try again.");
-      }
-    } catch {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    handleSubmit(e);
   };
 
   return (
@@ -170,9 +143,9 @@ export const Newsletter = ({ newsletter }: { newsletter: NewsletterProps }) => {
       >
         {newsletter.description}
       </Text>
-      {successMessage ? (
+      {state.succeeded ? (
         <Text style={{ position: "relative" }} onBackground="success-medium">
-          {successMessage}
+          Thank you for subscribing!
         </Text>
       ) : (
         <form
@@ -181,7 +154,7 @@ export const Newsletter = ({ newsletter }: { newsletter: NewsletterProps }) => {
             display: "flex",
             justifyContent: "center",
           }}
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
         >
           <Flex fillWidth maxWidth={24} gap="8">
             <Input
@@ -195,12 +168,13 @@ export const Newsletter = ({ newsletter }: { newsletter: NewsletterProps }) => {
               value={email}
               onChange={handleChange}
               onBlur={handleBlur}
-              errorMessage={error}
+              errorMessage={error || (state.errors?.getFormErrors()?.[0]?.message ?? "")}
             />
+            <ValidationError prefix="Email" field="email" errors={state.errors} />
             <div className="clear">
               <Flex height="48" vertical="center">
-                <Button type="submit" size="m" fillWidth disabled={isSubmitting}>
-                  {isSubmitting ? "Subscribing..." : "Subscribe"}
+                <Button type="submit" size="m" fillWidth disabled={state.submitting}>
+                  {state.submitting ? "Subscribing..." : "Subscribe"}
                 </Button>
               </Flex>
             </div>
