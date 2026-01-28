@@ -12,6 +12,7 @@ import {
 } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
+import SkillsShowcase from "@/components/about/SkillsShowcase";
 import styles from "@/components/about/about.module.scss";
 import { person, about, social } from "@/app/resources/content";
 
@@ -62,6 +63,11 @@ export default function About() {
       title: about.studies.title,
       display: about.studies.display,
       items: about.studies.institutions.map((institution) => institution.name),
+    },
+    {
+      title: "Skills Showcase",
+      display: true,
+      items: ["Frontend", "Backend", "AI & GenAI", "Tools & DevOps"],
     },
     {
       title: about.technical.title,
@@ -292,6 +298,13 @@ export default function About() {
               </Column>
             </>
           )}
+
+          <Heading as="h2" id="Skills Showcase" variant="display-strong-s" marginBottom="m">
+            Skills Showcase
+          </Heading>
+          <Column fillWidth marginBottom="40">
+            <SkillsShowcase />
+          </Column>
 
           {about.technical.display && (
             <>

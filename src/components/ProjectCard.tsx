@@ -7,6 +7,7 @@ import {
   Flex,
   Heading,
   SmartLink,
+  Tag,
   Text,
 } from "@/once-ui/components";
 import { PreviewLink } from "@/once-ui/components/PreviewLink";
@@ -20,6 +21,7 @@ interface ProjectCardProps {
   description: string;
   avatars: { src: string }[];
   link: string;
+  technologies?: string[];
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -30,6 +32,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   avatars,
   link,
+  technologies = [],
 }) => {
   return (
     <Column fillWidth gap="m">
@@ -55,13 +58,22 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </Heading>
           </Flex>
         )}
-        {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
+        {(avatars?.length > 0 || description?.trim() || content?.trim() || technologies?.length > 0) && (
           <Column flex={7} gap="16">
             {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
             {description?.trim() && (
               <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
                 {description}
               </Text>
+            )}
+            {technologies?.length > 0 && (
+              <Flex gap="8" wrap>
+                {technologies.map((tech) => (
+                  <Tag key={tech} size="s" variant="neutral">
+                    {tech}
+                  </Tag>
+                ))}
+              </Flex>
             )}
             <Flex gap="24" wrap>
               {content?.trim() && (

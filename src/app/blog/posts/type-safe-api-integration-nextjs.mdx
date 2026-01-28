@@ -1,0 +1,204 @@
+---
+title: "Type-Safe API Integration in Next.js: Lessons from ERP Development"
+publishedAt: "2025-01-15"
+image: "/images/gallery/img-09.jpg"
+summary: "How patterns from enterprise ERP integration can make your Next.js API layers more robust, maintainable, and developer-friendly."
+tag: "Frontend"
+---
+
+After spending years integrating AI features with Odoo's Python backend, I've developed a deep appreciation for type safety at system boundaries. The lessons learned from ERP development translate directly to building robust API layers in Next.js applications.
+
+## The Problem with Untyped API Calls
+
+Consider a typical API call in a Next.js application:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `// The "hope for the best" approach
+const response = await fetch('/api/users');
+const users = await response.json();
+// users is 'any' - no type safety, no autocomplete`,
+            label: 'Untyped API Call',
+            language: 'typescript'
+        },
+    ]}
+    copyButton
+/>
+
+This works until it doesn't. The API changes, a field gets renamed, and your application breaks at runtime instead of compile time.
+
+## Building a Type-Safe API Layer
+
+The pattern I use combines TypeScript, Zod for runtime validation, and a thin abstraction layer:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `import { z } from 'zod';
+
+// 1. Define the schema
+const UserSchema = z.object({
+  id: z.string().uuid(),
+  email: z.string().email(),
+  name: z.string(),
+  role: z.enum(['admin', 'user', 'guest']),
+  createdAt: z.string().datetime(),
+});
+
+// 2. Derive the TypeScript type
+type User = z.infer<typeof UserSchema>;
+
+// 3. Create a typed fetcher
+async function fetchUsers(): Promise<User[]> {
+  const response = await fetch('/api/users');
+  const data = await response.json();
+
+  // Runtime validation - catches API contract violations
+  return z.array(UserSchema).parse(data);
+}`,
+            label: 'Type-Safe API Layer',
+            language: 'typescript'
+        },
+    ]}
+    copyButton
+/>
+
+## Why Runtime Validation Matters
+
+TypeScript only helps at compile time. When your Next.js app calls an external API or your own backend, you're crossing a trust boundary. The data coming back could be:
+
+- Missing expected fields
+- Containing unexpected null values
+- Using different field names than documented
+- Including fields with wrong types
+
+Zod catches these issues immediately, with clear error messages pointing to exactly what's wrong.
+
+## Patterns from ERP Integration
+
+Working with Odoo taught me several patterns that improve API reliability:
+
+### 1. Validate at the Boundary
+
+In Odoo integrations, AI outputs are always validated before persistence. The same principle applies to API responses:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `// API response wrapper with validation
+class APIClient {
+  async get<T>(url: string, schema: z.ZodSchema<T>): Promise<T> {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new APIError(response.status, await response.text());
+    }
+
+    const data = await response.json();
+    return schema.parse(data); // Validate before returning
+  }
+}`,
+            label: 'Validated API Client',
+            language: 'typescript'
+        },
+    ]}
+    copyButton
+/>
+
+### 2. Graceful Degradation
+
+Not every validation failure should crash the application. Sometimes you want to handle partial data:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `const UserSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  // Optional with default - API might not include this
+  avatarUrl: z.string().url().optional().default('/default-avatar.png'),
+  // Transform incoming data
+  createdAt: z.string().transform(s => new Date(s)),
+});`,
+            label: 'Defensive Schema',
+            language: 'typescript'
+        },
+    ]}
+    copyButton
+/>
+
+### 3. Error Boundaries for API Failures
+
+Combine type-safe APIs with React Error Boundaries for resilient UIs:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `function UserProfile({ userId }: { userId: string }) {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => apiClient.get(\`/api/users/\${userId}\`, UserSchema),
+  });
+
+  if (error instanceof z.ZodError) {
+    // API contract violation - log and show fallback
+    logToSentry(error);
+    return <UserProfileFallback />;
+  }
+
+  // TypeScript knows 'data' is User type here
+  return <UserCard user={data} />;
+}`,
+            label: 'Error Handling',
+            language: 'tsx'
+        },
+    ]}
+    copyButton
+/>
+
+## Next.js Server Actions
+
+With Next.js Server Actions, type safety becomes even more important since you're defining both the client call and server handler:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `'use server';
+
+const CreateUserInput = z.object({
+  email: z.string().email(),
+  name: z.string().min(1).max(100),
+});
+
+export async function createUser(input: z.infer<typeof CreateUserInput>) {
+  // Validate input (never trust client data)
+  const validated = CreateUserInput.parse(input);
+
+  // Now safely use validated.email and validated.name
+  const user = await db.users.create({ data: validated });
+
+  return UserSchema.parse(user); // Validate output too
+}`,
+            label: 'Server Action',
+            language: 'typescript'
+        },
+    ]}
+    copyButton
+/>
+
+## Key Takeaways
+
+1. **Define schemas once**, derive types from them
+2. **Validate at boundaries** - both input and output
+3. **Plan for failure** - APIs change, networks fail
+4. **Use tooling** - Zod, tRPC, or similar libraries
+5. **Test edge cases** - null values, empty arrays, missing fields
+
+Type safety isn't about eliminating bugs—it's about catching them earlier, when they're cheapest to fix. The patterns that make ERP integrations reliable work just as well for modern web applications.

@@ -1,0 +1,107 @@
+---
+title: "Building Resilient React Components with Error Boundaries"
+publishedAt: "2025-01-25"
+image: "/images/gallery/img-05.jpg"
+summary: "Learn how to create fault-tolerant React applications using Error Boundaries, graceful degradation patterns, and production-ready error handling strategies."
+tag: "Frontend"
+---
+
+In production applications, components will eventually fail. Network requests timeout, APIs return unexpected data, and edge cases slip through testing. The question isn't whether your React components will encounter errors—it's how gracefully they'll handle them.
+
+## Why Error Boundaries Matter
+
+React's default behavior when a component throws an error is to unmount the entire component tree. In a complex application, this means a single failing widget could take down your entire page. Error Boundaries provide a way to catch these errors and display a fallback UI instead.
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // Log to your error tracking service
+    logErrorToService(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <ErrorFallback error={this.state.error} />;
+    }
+    return this.props.children;
+  }
+}`,
+            label: 'ErrorBoundary.tsx',
+            language: 'tsx'
+        },
+    ]}
+    copyButton
+/>
+
+## Strategic Placement of Error Boundaries
+
+Not all errors are equal. A failing comment section shouldn't prevent users from reading an article. I recommend a layered approach:
+
+1. **App-level boundary**: Catches catastrophic failures, shows a "something went wrong" page
+2. **Route-level boundaries**: Isolate page-specific failures
+3. **Feature-level boundaries**: Wrap independent widgets (charts, comments, recommendations)
+
+## The Fallback UI Pattern
+
+A good fallback UI does three things:
+
+- Communicates that something went wrong without technical jargon
+- Provides actionable next steps (retry, refresh, contact support)
+- Maintains the overall page layout to prevent jarring visual shifts
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `const WidgetErrorFallback = ({ error, resetError }) => (
+  <Card variant="outlined" padding="l">
+    <Flex direction="column" gap="m" alignItems="center">
+      <Icon name="alertCircle" size="l" />
+      <Text variant="body-default-m">
+        Unable to load this section
+      </Text>
+      <Button variant="secondary" onClick={resetError}>
+        Try Again
+      </Button>
+    </Flex>
+  </Card>
+);`,
+            label: 'WidgetErrorFallback.tsx',
+            language: 'tsx'
+        },
+    ]}
+    copyButton
+/>
+
+## Lessons from ERP Integration
+
+Working on ERP systems at Hung Hing taught me that enterprise applications require extra resilience. When integrating AI features into Odoo, I applied these principles:
+
+- **Every AI feature has a non-AI fallback**: If the LLM service is down, users can still complete their tasks manually
+- **Timeout boundaries**: AI operations that exceed time limits gracefully degrade
+- **Validation before persistence**: AI outputs are validated before being saved to the database
+
+These patterns translate directly to frontend development. Whether you're integrating a third-party API or rendering user-generated content, defensive programming prevents cascading failures.
+
+## Testing Error Scenarios
+
+Error boundaries are only useful if they're tested. I recommend:
+
+1. **Unit tests**: Verify fallback UI renders correctly
+2. **Integration tests**: Simulate API failures and network timeouts
+3. **Chaos testing**: Randomly inject failures in staging environments
+
+## Key Takeaways
+
+Building resilient React applications requires thinking about failure modes upfront. Error Boundaries are a powerful tool, but they're most effective when combined with thoughtful architecture and comprehensive testing.
+
+The goal isn't to prevent all errors—it's to ensure that when errors occur, your application degrades gracefully and your users can continue their work.

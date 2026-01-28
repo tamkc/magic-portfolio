@@ -1,0 +1,20 @@
+.container {
+  margin-top: var(--static-space-16);
+}
+
+.categoryCard {
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--brand-alpha-medium);
+    transform: translateY(-2px);
+  }
+}
+
+.skillTag {
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

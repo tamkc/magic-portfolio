@@ -21,6 +21,11 @@ import {
   HiCalendarDays,
   HiClipboard,
   HiArrowRight,
+  HiCodeBracket,
+  HiServerStack,
+  HiSparkles,
+  HiCog6Tooth,
+  HiStar,
 } from "react-icons/hi2";
 
 import {
@@ -63,4 +68,9 @@ export const iconLibrary: Record<string, IconType> = {
   x: FaXTwitter,
   clipboard: HiClipboard,
   arrowUpRightFromSquare: HiArrowTopRightOnSquare,
+  code: HiCodeBracket,
+  server: HiServerStack,
+  sparkle: HiSparkles,
+  settings: HiCog6Tooth,
+  star: HiStar,
 };

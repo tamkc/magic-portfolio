@@ -1,0 +1,111 @@
+---
+title: "The Art of Prompt Engineering for UI Generation"
+publishedAt: "2025-01-20"
+image: "/images/gallery/img-07.jpg"
+summary: "Exploring how prompt engineering principles can accelerate frontend development, from generating component code to creating design system documentation."
+tag: "GenAI"
+---
+
+The intersection of Generative AI and frontend development is one of the most exciting spaces in software engineering today. As someone who works with both ERP systems and modern web applications, I've found that the principles of prompt engineering translate remarkably well to UI development workflows.
+
+## Beyond "Generate a Button Component"
+
+The naive approach to AI-assisted UI development is asking for complete components. The results are often generic, inconsistent with your design system, and require significant refactoring. A more effective approach treats prompts as engineering artifacts.
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `// Bad prompt: "Create a React button component"
+
+// Good prompt structure:
+const promptTemplate = \`
+Context: Next.js 15 app using Once UI design system
+Component: ActionButton
+Props: variant (primary|secondary), size (s|m|l), loading state
+Constraints:
+- Use existing design tokens from @/once-ui/components
+- Follow existing component patterns in /components
+- Include TypeScript types
+- Handle disabled and loading states
+Output: TypeScript React component with proper exports
+\`;`,
+            label: 'Structured Prompt',
+            language: 'typescript'
+        },
+    ]}
+    copyButton
+/>
+
+## The Context Window is Your Friend
+
+When working with LLMs for code generation, providing relevant context dramatically improves output quality. I structure my prompts with:
+
+1. **System context**: Framework, libraries, coding standards
+2. **Design context**: Color tokens, spacing scales, typography
+3. **Pattern context**: Examples of similar components in the codebase
+4. **Constraint context**: Accessibility requirements, browser support
+
+## Practical Applications in Frontend Development
+
+### 1. Component Variant Generation
+
+Once you have a base component, AI can help generate variants:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `// Given this base Card component, generate:
+// - CardCompact: Reduced padding, smaller text
+// - CardFeatured: Highlight border, badge support
+// - CardInteractive: Hover states, click handling
+
+// Include: TypeScript props, Storybook stories, unit tests`,
+            label: 'Variant Generation Prompt',
+            language: 'typescript'
+        },
+    ]}
+    copyButton
+/>
+
+### 2. Responsive Layout Scaffolding
+
+Describing layouts in natural language and getting Tailwind/CSS output:
+
+- "Three-column grid on desktop, single column on mobile, with the sidebar collapsing into a drawer"
+- "Hero section with background image, centered text overlay, and a gradient fade at the bottom"
+
+### 3. Design System Documentation
+
+AI excels at generating documentation from code:
+
+- Extract prop tables from TypeScript interfaces
+- Generate usage examples from component implementations
+- Create accessibility guidelines based on ARIA attributes
+
+## Guardrails and Validation
+
+Just as AI outputs in ERP systems need validation before persistence, generated UI code needs review:
+
+- **Linting**: Run ESLint/Prettier automatically
+- **Type checking**: TypeScript catches many generation errors
+- **Visual regression**: Compare screenshots before/after
+- **Accessibility audit**: Automated a11y testing
+
+## The Human-AI Collaboration Model
+
+The most effective workflow isn't replacing developers with AI—it's augmenting their capabilities:
+
+1. **Developer defines the architecture** and design system
+2. **AI generates boilerplate** and variants
+3. **Developer reviews, refines**, and integrates
+4. **AI assists with documentation** and test generation
+
+This mirrors how I approach AI integration in Odoo: the AI handles repetitive tasks while humans maintain control over critical decisions.
+
+## Looking Forward
+
+As models improve, I expect AI-assisted frontend development to become standard practice. The developers who will thrive are those who learn to write effective prompts, establish clear constraints, and maintain rigorous validation pipelines.
+
+The goal isn't to generate code faster—it's to spend more time on the creative and architectural challenges that truly require human judgment.
