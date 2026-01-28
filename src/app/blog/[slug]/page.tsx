@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Flex, Heading, Icon, Row, Tag, Text } from "@/once-ui/components";
+import { AvatarGroup, Button, Column, Flex, Heading, Icon, Row, SmartImage, Tag, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
@@ -130,6 +130,15 @@ export default async function Blog(props: BlogParams) {
         title={post.metadata.title}
         slug={post.slug}
       />
+      {(post.metadata.images?.length > 0 || post.metadata.image) && (
+        <SmartImage
+          priority
+          aspectRatio="16 / 9"
+          radius="m"
+          alt={post.metadata.title}
+          src={post.metadata.images?.[0] || post.metadata.image}
+        />
+      )}
       <Column as="article" fillWidth>
         <CustomMDX source={post.content} />
       </Column>
