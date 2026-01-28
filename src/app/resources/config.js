@@ -10,11 +10,8 @@ const routes = {
   "/about#contact": true,
 };
 
-// Enable password protection on selected routes
-// Set password in pages/api/authenticate.ts
-const protectedRoutes = {
-  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
-};
+// Password protection disabled for static export (GitHub Pages)
+const protectedRoutes = {};
 
 const style = {
   theme: "dark", // dark | light

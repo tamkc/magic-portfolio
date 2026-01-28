@@ -14,7 +14,7 @@ const person = {
 };
 
 const newsletter = {
-  display: true,
+  display: false, // Disabled for static export (GitHub Pages)
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: (
     <>
