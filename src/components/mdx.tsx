@@ -14,12 +14,12 @@ interface ImageGalleryProps {
 function ImageGallery({ images, columns = 2 }: ImageGalleryProps) {
   return (
     <Grid
-      columns={`repeat(${columns}, 1fr)`}
+      columns={columns}
       gap="16"
       marginTop="24"
       marginBottom="24"
-      tabletColumns="1col"
-      mobileColumns="1col"
+      tabletColumns="1"
+      mobileColumns="1"
     >
       {images.map((image, index) => (
         <SmartImage
