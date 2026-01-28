@@ -1,0 +1,91 @@
+---
+title: "Next.js 16: The Cache Components Era"
+publishedAt: "2025-10-28"
+image: "/images/next.webp"
+summary: "Next.js 16 introduces Cache Components, Turbopack as default, and proxy.ts—fundamentally changing how we think about caching and performance in React applications."
+tag: "Frontend"
+---
+
+Next.js 16 has landed ahead of Next.js Conf 2025. This release fundamentally changes how caching works—Cache Components, Turbopack as default, and the new proxy.ts reshape how we build performant React applications.
+
+## Cache Components: Explicit Caching
+
+The `"use cache"` directive replaces implicit caching. All dynamic code now executes at request time by default—you opt in to caching explicitly:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `"use cache";
+
+export async function ProductCard({ id }: { id: string }) {
+  const product = await db.products.findUnique({ where: { id } });
+  return <Card>{product.name}</Card>;
+}`,
+            label: 'Cached Component',
+            language: 'tsx'
+        },
+    ]}
+    copyButton
+/>
+
+Enable with `cacheComponents: true` in your next.config.ts. This completes the Partial Pre-Rendering story—mix static and dynamic content with precision.
+
+## New Caching APIs
+
+Three distinct APIs for cache invalidation:
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `'use server';
+import { revalidateTag, updateTag, refresh } from 'next/cache';
+
+// SWR behavior - now requires cacheLife profile
+revalidateTag('blog-posts', 'max');
+
+// Read-your-writes - user sees changes immediately
+updateTag(\`user-\${userId}\`);
+
+// Refresh uncached data only
+refresh();`,
+            label: 'Cache APIs',
+            language: 'typescript'
+        },
+    ]}
+    copyButton
+/>
+
+## Turbopack Is Default
+
+Turbopack is now the default bundler with **2-5x faster** builds and **up to 10x faster** Fast Refresh. Opt out with `--webpack` if needed.
+
+## proxy.ts Replaces middleware.ts
+
+The new `proxy.ts` clarifies the network boundary and runs on Node.js runtime. Migration: rename the file, rename the function to `proxy`.
+
+## Breaking Changes
+
+- **Node.js 20.9.0+** required
+- **Async APIs** — `cookies()`, `headers()`, `params`, `searchParams` require `await`
+- **AMP and `next lint` removed**
+- **Parallel routes** require explicit `default.js` files
+
+## Upgrade
+
+<CodeBlock className="my-24"
+    compact
+    codeInstances={[
+        {
+            code: `npx @next/codemod@canary upgrade latest`,
+            label: 'Terminal',
+            language: 'bash'
+        },
+    ]}
+    copyButton
+/>
+
+## Key Takeaways
+
+Next.js 16 trades implicit magic for explicit control. Cache Components, clearer caching APIs, and Turbopack performance make this a significant upgrade—and the shift toward predictability is the right direction.
