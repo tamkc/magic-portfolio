@@ -130,13 +130,13 @@ export default async function Blog(props: BlogParams) {
         title={post.metadata.title}
         slug={post.slug}
       />
-      {(post.metadata.images?.length > 0 || post.metadata.image) && (
+      {(post.metadata.images?.[0] || post.metadata.image) && (
         <SmartImage
           priority
           aspectRatio="16 / 9"
           radius="m"
           alt={post.metadata.title}
-          src={post.metadata.images?.[0] || post.metadata.image}
+          src={(post.metadata.images?.[0] || post.metadata.image) as string}
         />
       )}
       <Column as="article" fillWidth>

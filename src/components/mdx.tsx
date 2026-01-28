@@ -1,9 +1,39 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import React, { ReactNode } from "react";
 
-import { SmartImage, SmartLink, Text } from "@/once-ui/components";
+import { Carousel, Flex, Grid, SmartImage, SmartLink, Text } from "@/once-ui/components";
 import { CodeBlock } from "@/once-ui/modules";
 import { HeadingLink } from "@/components";
+
+// Image Gallery component for displaying multiple images in a grid
+interface ImageGalleryProps {
+  images: { src: string; alt: string }[];
+  columns?: 2 | 3;
+}
+
+function ImageGallery({ images, columns = 2 }: ImageGalleryProps) {
+  return (
+    <Grid
+      columns={`repeat(${columns}, 1fr)`}
+      gap="16"
+      marginTop="24"
+      marginBottom="24"
+      tabletColumns="1col"
+      mobileColumns="1col"
+    >
+      {images.map((image, index) => (
+        <SmartImage
+          key={index}
+          enlarge
+          radius="m"
+          aspectRatio="16 / 9"
+          alt={image.alt}
+          src={image.src}
+        />
+      ))}
+    </Grid>
+  );
+}
 
 import { TextProps } from "@/once-ui/interfaces";
 import { SmartImageProps } from "@/once-ui/components/SmartImage";
@@ -140,6 +170,8 @@ const components = {
   a: CustomLink as any,
   Table,
   CodeBlock,
+  Carousel,
+  ImageGallery,
 };
 
 type CustomMDXProps = MDXRemoteProps & {
