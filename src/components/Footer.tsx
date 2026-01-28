@@ -29,9 +29,9 @@ export const Footer = () => {
           <Text onBackground="neutral-weak">
             / Get in Touch{" "}
             <a className="ml-1"
-              href="mailto:tamkc1999@gmail.com"
+              href="mailto:tamkcatwork@gmail.com"
             >
-              tamkc1999@gmail.com
+              tamkcatwork@gmail.com
             </a>
           </Text>
         </Text>
