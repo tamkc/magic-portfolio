@@ -69,8 +69,7 @@ const display = {
   time: true,
 };
 
-const mailchimp = {
-  action: "https://url/subscribe/post?parameters",
+const newsletterConfig = {
   effects: {
     mask: {
       cursor: false,
@@ -108,4 +107,4 @@ const mailchimp = {
   },
 };
 
-export { routes, protectedRoutes, effects, style, display, mailchimp, baseURL };
+export { routes, protectedRoutes, effects, style, display, newsletterConfig, baseURL };
