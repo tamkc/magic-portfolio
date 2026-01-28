@@ -7,11 +7,13 @@ const withMDX = mdx({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   experimental: {
     reactCompiler: true,
   },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
