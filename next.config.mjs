@@ -8,6 +8,8 @@ const withMDX = mdx({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
+  basePath: "/magic-portfolio",
+  assetPrefix: "/magic-portfolio",
   experimental: {
     reactCompiler: true,
   },
