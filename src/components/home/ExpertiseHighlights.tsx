@@ -1,6 +1,6 @@
 "use client";
 
-import { Column, Flex, Heading, Icon, Text } from "@/once-ui/components";
+import { Column, Flex, Grid, Heading, Icon, Text } from "@/once-ui/components";
 
 const expertiseAreas = [
   {
@@ -22,12 +22,10 @@ const expertiseAreas = [
 
 export default function ExpertiseHighlights() {
   return (
-    <Flex fillWidth gap="l" wrap horizontal="center">
+    <Grid columns="3" mobileColumns="1" tabletColumns="2" gap="l" fillWidth>
       {expertiseAreas.map((area) => (
         <Column
           key={area.title}
-          flex={1}
-          minWidth={240}
           padding="l"
           radius="l"
           border="neutral-alpha-weak"
@@ -45,6 +43,6 @@ export default function ExpertiseHighlights() {
           </Text>
         </Column>
       ))}
-    </Flex>
+    </Grid>
   );
 }

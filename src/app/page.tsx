@@ -98,9 +98,9 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Column>
-      <RevealFx translateY="16" delay={0.6} fillWidth>
+      <Column fillWidth paddingX="l">
         <ExpertiseHighlights />
-      </RevealFx>
+      </Column>
       <RevealFx translateY="20" delay={0.8}>
         <Projects range={[1, 1]} />
       </RevealFx>
