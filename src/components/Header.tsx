@@ -86,12 +86,14 @@ export const Header = () => {
         </Flex>
         <Flex fillWidth horizontal="center">
           <Flex
+            as="nav"
             background="surface"
             border="neutral-medium"
             radius="m-4"
             shadow="l"
             padding="4"
             horizontal="center"
+            aria-label="Main navigation"
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
               {routes["/"] && (
@@ -99,9 +101,10 @@ export const Header = () => {
                   prefixIcon="home"
                   href="/"
                   selected={pathname === "/"}
+                  aria-label="Home"
                 />
               )}
-              <Line vert maxHeight="24" />
+              <Line vert maxHeight="24" aria-hidden="true" />
               {routes["/about"] && (
                 <>
                   <ToggleButton

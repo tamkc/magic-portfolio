@@ -26,6 +26,9 @@ import {
   HiSparkles,
   HiCog6Tooth,
   HiStar,
+  HiClock,
+  HiShare,
+  HiLink,
 } from "react-icons/hi2";
 
 import {
@@ -73,4 +76,7 @@ export const iconLibrary: Record<string, IconType> = {
   sparkle: HiSparkles,
   settings: HiCog6Tooth,
   star: HiStar,
+  clock: HiClock,
+  share: HiShare,
+  link: HiLink,
 };

@@ -53,7 +53,7 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Fullstack Engineer</>,
+  headline: <>Fullstack Engineer & GenAI Specialist</>,
   subline: (
     <>
       I'm Peter Tam, a Senior Programmer at{" "}
@@ -66,8 +66,9 @@ const home = {
           Hung Hing Printing Group Limited
         </Link>
       </InlineCode>
-      , where I design and develop frontend and backend projects that deliver
-      intuitive user experiences. In my free time, I work on personal projects.
+      . I specialize in integrating <strong>Generative AI into enterprise systems</strong>,
+      building production-ready LLM features for ERP workflows, and creating
+      modern web applications with React and Next.js.
     </>
   ),
 };

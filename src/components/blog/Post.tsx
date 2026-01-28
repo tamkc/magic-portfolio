@@ -1,8 +1,9 @@
 "use client";
 
-import { Column, Flex, Heading, SmartImage, SmartLink, Tag, Text } from "@/once-ui/components";
+import { Column, Flex, Heading, Icon, SmartImage, SmartLink, Tag, Text } from "@/once-ui/components";
 import styles from "./Posts.module.scss";
 import { formatDate } from "@/app/utils/formatDate";
+import { calculateReadingTime } from "@/app/utils/readingTime";
 
 interface PostProps {
   post: any;
@@ -44,9 +45,17 @@ export default function Post({ post, thumbnail }: PostProps) {
           <Heading as="h2" variant="heading-strong-l" wrap="balance">
             {post.metadata.title}
           </Heading>
-          <Text variant="label-default-s" onBackground="neutral-weak">
-            {formatDate(post.metadata.publishedAt, false)}
-          </Text>
+          <Flex gap="16" vertical="center">
+            <Text variant="label-default-s" onBackground="neutral-weak">
+              {formatDate(post.metadata.publishedAt, false)}
+            </Text>
+            <Flex gap="4" vertical="center">
+              <Icon name="clock" size="xs" onBackground="neutral-weak" />
+              <Text variant="label-default-s" onBackground="neutral-weak">
+                {calculateReadingTime(post.content)}
+              </Text>
+            </Flex>
+          </Flex>
           {post.metadata.tag && (
             <Tag className="mt-8" label={post.metadata.tag} variant="neutral" />
           )}

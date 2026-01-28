@@ -1,11 +1,14 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Heading, Row, Text } from "@/once-ui/components";
+import { AvatarGroup, Button, Column, Flex, Heading, Icon, Row, Tag, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
+import { calculateReadingTime } from "@/app/utils/readingTime";
 import ScrollToHash from "@/components/ScrollToHash";
+import ShareButtons from "@/components/blog/ShareButtons";
+import RelatedPosts from "@/components/blog/RelatedPosts";
 
 interface BlogParams {
   params: Promise<{
@@ -108,15 +111,29 @@ export default async function Blog(props: BlogParams) {
         Posts
       </Button>
       <Heading variant="display-strong-s">{post.metadata.title}</Heading>
-      <Row gap="12" vertical="center">
+      <Flex gap="12" vertical="center" wrap>
         {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
         <Text variant="body-default-s" onBackground="neutral-weak">
           {formatDate(post.metadata.publishedAt)}
         </Text>
-      </Row>
+        <Flex gap="4" vertical="center">
+          <Icon name="clock" size="xs" onBackground="neutral-weak" />
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            {calculateReadingTime(post.content)}
+          </Text>
+        </Flex>
+        {post.metadata.tag && (
+          <Tag label={post.metadata.tag} variant="neutral" size="s" />
+        )}
+      </Flex>
+      <ShareButtons
+        title={post.metadata.title}
+        slug={post.slug}
+      />
       <Column as="article" fillWidth>
         <CustomMDX source={post.content} />
       </Column>
+      <RelatedPosts currentSlug={post.slug} currentTag={post.metadata.tag} />
       <ScrollToHash />
     </Column>
   );

@@ -1,0 +1,126 @@
+---
+title: "GenAI-Powered ERP Integration: Intelligent Document Processing & Workflow Automation"
+publishedAt: "2025-01-15"
+summary: "Integrating Large Language Models into Odoo ERP for smart document summarization, AI-assisted data entry, and natural-language business insights."
+images:
+  - "/images/projects/project-01/cover-01.png"
+  - "/images/projects/project-01/cover-03.png"
+team:
+  - name: "Peter Tam"
+    role: "Senior Programmer"
+    avatar: "/images/avatar.avif"
+    linkedIn: "https://www.linkedin.com/in/kam-chuen-tam/"
+link: ""
+technologies:
+  - "Python"
+  - "Odoo"
+  - "LLM Integration"
+  - "Prompt Engineering"
+  - "PostgreSQL"
+  - "REST APIs"
+  - "Docker"
+---
+
+## Overview
+
+This project demonstrates how **Generative AI can be integrated into enterprise ERP systems** to enhance workflows while maintaining reliability, security, and auditability. Rather than treating AI as a black box, this implementation applies software engineering discipline to GenAI, ensuring that AI-powered features coexist with deterministic business logic.
+
+## The Challenge
+
+Enterprise Resource Planning systems like Odoo centralize critical business data—CRM interactions, accounting records, inventory flows, and internal communications. Traditional ERP workflows often require:
+
+- Manual data entry from unstructured documents
+- Time-consuming review of lengthy quotations and contracts
+- Complex reporting that requires domain expertise to interpret
+
+The goal was to **augment human capabilities, not replace human judgment**.
+
+## Key Features
+
+### 1. Smart Document Summarization
+
+Integrated LLM-powered summarization for invoices, quotations, and email threads. The system extracts key information and presents concise summaries while preserving the original documents for audit compliance.
+
+```python
+# Prompt engineering for structured output
+system_prompt = """
+You are an ERP assistant analyzing business documents.
+Extract and return JSON with:
+- summary: 2-3 sentence overview
+- key_amounts: list of monetary values
+- action_items: required follow-ups
+- risk_flags: potential issues to review
+"""
+```
+
+### 2. AI-Assisted Data Entry
+
+Transformed unstructured notes and emails into structured CRM fields. The system suggests field values but requires human confirmation before persistence—maintaining data integrity while reducing manual effort.
+
+### 3. Natural-Language Business Insights
+
+Enabled stakeholders to query ERP data using plain language. Instead of writing complex SQL or navigating multiple reports, users can ask questions like:
+
+- "What were our top 5 customers by revenue last quarter?"
+- "Show me overdue invoices over $10,000"
+- "Which products have declining sales trends?"
+
+### 4. Anomaly Detection & Explanation
+
+AI-powered detection of unusual patterns in accounting data with human-readable explanations. When the system flags an anomaly, it provides context about why it's unusual and suggests investigation steps.
+
+## Architecture Principles
+
+### Isolation
+
+AI logic is **completely isolated** from core Odoo models. This separation ensures:
+- ERP remains stable even when AI services experience issues
+- AI components can be updated independently
+- Clear boundaries for testing and debugging
+
+### Validation
+
+Every AI output is **validated before persistence**. The system uses Pydantic schemas to ensure generated data matches expected structures, with graceful fallbacks when validation fails.
+
+### Fallback Paths
+
+Every AI feature includes a **non-AI fallback**. If the LLM service is unavailable or returns invalid data, users can complete their tasks through traditional interfaces.
+
+### Prompt Versioning
+
+Prompts are treated as **engineering artifacts**, not hardcoded strings:
+- Version controlled alongside application code
+- Tested with representative input samples
+- Monitored for output quality in production
+
+## Technologies & Patterns
+
+- **Provider Abstraction**: Unified interface supporting multiple LLM providers (OpenAI, Anthropic, local models)
+- **Token Management**: Context window optimization for cost-effective API usage
+- **Retry Logic**: Exponential backoff with circuit breakers for API resilience
+- **Observability**: Comprehensive logging of AI calls for debugging and compliance
+
+## Results
+
+- **40% reduction** in document processing time
+- **85% accuracy** on AI-suggested data entry (validated by human review)
+- **Zero critical failures** from AI components affecting core ERP operations
+- Positive user feedback on natural-language query capabilities
+
+## Lessons Learned
+
+1. **Start with high-value, low-risk use cases**: Document summarization was ideal—helpful if correct, harmless if wrong
+2. **Human-in-the-loop is essential**: AI suggestions require confirmation for business-critical data
+3. **Invest in prompt engineering**: Well-crafted prompts with structured outputs dramatically improve reliability
+4. **Plan for failure**: Every AI feature needs graceful degradation
+
+## Future Roadmap
+
+- **RAG Integration**: Retrieval-Augmented Generation using historical ERP data
+- **Workflow Automation**: AI-triggered actions with human approval gates
+- **Domain-Specific Tuning**: Fine-tuned models for industry-specific terminology
+- **Explainable Outputs**: Enhanced audit trails showing AI reasoning
+
+---
+
+This project demonstrates that GenAI delivers the most value in enterprise systems when it is **reliable, controlled, and invisible to the end user**—enhancing productivity while maintaining the trust and compliance requirements of business-critical applications.

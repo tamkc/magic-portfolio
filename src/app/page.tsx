@@ -2,6 +2,7 @@ import React from "react";
 
 import { Heading, Flex, Text, Button, Avatar, RevealFx, Arrow, Column } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
+import ExpertiseHighlights from "@/components/home/ExpertiseHighlights";
 
 import { baseURL, routes } from "@/app/resources";
 import { home, about, person, newsletter } from "@/app/resources/content";
@@ -97,7 +98,10 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Column>
-      <RevealFx translateY="16" delay={0.6}>
+      <RevealFx translateY="16" delay={0.6} fillWidth>
+        <ExpertiseHighlights />
+      </RevealFx>
+      <RevealFx translateY="20" delay={0.8}>
         <Projects range={[1, 1]} />
       </RevealFx>
       {routes["/blog"] && (

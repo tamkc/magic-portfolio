@@ -16,15 +16,48 @@ import { Background, Column, Flex, ToastProvider } from "@/once-ui/components";
 export async function generateMetadata() {
   return {
     metadataBase: new URL(`https://${baseURL}`),
-    title: home.title,
+    title: {
+      default: home.title,
+      template: `%s | ${person.name}`,
+    },
     description: home.description,
+    keywords: [
+      "Fullstack Developer",
+      "GenAI Integration",
+      "LLM Integration",
+      "Python Developer",
+      "React Developer",
+      "Next.js",
+      "Odoo ERP",
+      "Prompt Engineering",
+      "AI Engineer",
+      "Toronto Developer",
+      person.name,
+    ],
+    authors: [{ name: person.name }],
+    creator: person.name,
+    publisher: person.name,
     openGraph: {
-      title: `${person.firstName}'s Portfolio`,
-      description: "Portfolio website showcasing my work.",
+      title: `${person.name} - Fullstack Engineer & GenAI Specialist`,
+      description: "Portfolio showcasing GenAI integration, ERP development, and modern web applications.",
       url: baseURL,
-      siteName: `${person.firstName}'s Portfolio`,
+      siteName: `${person.name}'s Portfolio`,
       locale: "en_US",
       type: "website",
+      images: [
+        {
+          url: `https://${baseURL}/og?title=${encodeURIComponent(home.title)}`,
+          width: 1200,
+          height: 630,
+          alt: `${person.name}'s Portfolio`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${person.name} - Fullstack Engineer & GenAI Specialist`,
+      description: "Portfolio showcasing GenAI integration, ERP development, and modern web applications.",
+      images: [`https://${baseURL}/og?title=${encodeURIComponent(home.title)}`],
     },
     robots: {
       index: true,
@@ -36,6 +69,14 @@ export async function generateMetadata() {
         "max-image-preview": "large",
         "max-snippet": -1,
       },
+    },
+    alternates: {
+      canonical: `https://${baseURL}`,
+    },
+    verification: {
+      // Add your verification codes here when ready
+      // google: "your-google-verification-code",
+      // yandex: "your-yandex-verification-code",
     },
   };
 }

@@ -13,6 +13,7 @@ import {
 import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import SkillsShowcase from "@/components/about/SkillsShowcase";
+import ContactForm from "@/components/about/ContactForm";
 import styles from "@/components/about/about.module.scss";
 import { person, about, social } from "@/app/resources/content";
 
@@ -73,6 +74,11 @@ export default function About() {
       title: about.technical.title,
       display: about.technical.display,
       items: about.technical.skills.map((skill) => skill.title),
+    },
+    {
+      title: "Contact",
+      display: true,
+      items: [],
     },
   ];
   return (
@@ -354,6 +360,13 @@ export default function About() {
               </Column>
             </>
           )}
+
+          <Heading as="h2" id="Contact" variant="display-strong-s" marginTop="xl" marginBottom="m">
+            Contact
+          </Heading>
+          <Column fillWidth>
+            <ContactForm />
+          </Column>
         </Column>
       </Flex>
     </Column>
