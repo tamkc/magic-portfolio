@@ -66,9 +66,10 @@ const home = {
           Doglas Trading Inc.
         </Link>
       </InlineCode>
-      . I specialize in integrating <strong>Generative AI into enterprise systems</strong>,
-      building production-ready LLM features for ERP workflows, and creating
-      modern web applications with React, Next.js, and Python.
+      . I specialize in integrating{" "}
+      <strong>Generative AI into enterprise systems</strong>, building
+      production-ready LLM features for ERP workflows, and creating modern web
+      applications with React, Next.js, and Python, Node.js.
     </>
   ),
 };
@@ -93,11 +94,12 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Peter is a Canada-based Full Stack Developer with extensive experience in building
-        modern web applications using JavaScript, TypeScript, React, and Next.js, with strong
-        backend integration in Python and PHP. Proven ability to design, implement, and deliver
-        robust, user-centric solutions in Agile/Scrum environments. Adept at working with
-        large-scale codebases and mentoring junior developers.
+        Peter is a Canada-based Full Stack Developer with extensive experience
+        in building modern web applications using JavaScript, TypeScript, React,
+        and Next.js, with strong backend integration in Python and PHP. Proven
+        ability to design, implement, and deliver robust, user-centric solutions
+        in Agile/Scrum environments. Adept at working with large-scale codebases
+        and mentoring junior developers.
       </>
     ),
   },
@@ -111,20 +113,18 @@ const about = {
         role: "Full Stack Developer",
         achievements: [
           <>
-            Designed and delivered a full-stack ERP system using JavaScript/TypeScript
-            and Python-based backend services.
+            Designed and delivered a full-stack ERP system using
+            JavaScript/TypeScript and Python-based backend services.
           </>,
           <>
-            Built and integrated REST APIs to support frontend workflows, reporting,
-            and third-party services.
+            Built and integrated REST APIs to support frontend workflows,
+            reporting, and third-party services.
           </>,
           <>
-            Implemented CI/CD pipelines using GitHub, enabling automated testing,
-            build, and deployment.
+            Implemented CI/CD pipelines using GitHub, enabling automated
+            testing, build, and deployment.
           </>,
-          <>
-            Deployed containerized applications using Docker and Kubernetes.
-          </>,
+          <>Deployed containerized applications using Docker and Kubernetes.</>,
         ],
         images: [],
       },
@@ -138,12 +138,12 @@ const about = {
             including Estimation, Quotation, and Delivery workflows.
           </>,
           <>
-            Built a full-stack Payroll system with modern frontend (React / Next.js)
-            and Python backend.
+            Built a full-stack Payroll system with modern frontend (React /
+            Next.js) and Python backend.
           </>,
           <>
-            Worked in an Agile environment, collaborating closely with stakeholders
-            to iterate features from design to production.
+            Worked in an Agile environment, collaborating closely with
+            stakeholders to iterate features from design to production.
           </>,
         ],
         images: [
@@ -161,12 +161,13 @@ const about = {
         role: "Software Engineer (Part-Time)",
         achievements: [
           <>
-            Developed frontend modules and enhanced integrations between the Booking
-            System, Webex, and Microsoft Calendar using PHP and REST APIs.
+            Developed frontend modules and enhanced integrations between the
+            Booking System, Webex, and Microsoft Calendar using PHP and REST
+            APIs.
           </>,
           <>
-            Led client-facing prototype development, pre-sales demos, and authored
-            comprehensive API documentation.
+            Led client-facing prototype development, pre-sales demos, and
+            authored comprehensive API documentation.
           </>,
         ],
         images: [],
@@ -347,4 +348,31 @@ const gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+const skill = {
+  label: "Skill",
+  title: "My Skills",
+  description: `Skills of ${person.name}`,
+  // Create new project pages by adding a new .mdx file to app/blog/posts
+  // All projects will be listed on the /home and /work routes
+};
+
+const contact = {
+  label: "Contact",
+  title: "Contact Me",
+  description: `Contact ${person.name}`,
+  // Create new project pages by adding a new .mdx file to app/blog/posts
+  // All projects will be listed on the /home and /work routes
+};
+
+export {
+  person,
+  social,
+  newsletter,
+  home,
+  about,
+  blog,
+  work,
+  gallery,
+  skill,
+  contact,
+};

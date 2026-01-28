@@ -14,6 +14,8 @@ import {
   blog,
   work,
   gallery,
+  skill,
+  contact,
 } from "@/app/resources/content";
 
 type TimeDisplayProps = {
@@ -136,6 +138,40 @@ export const Header = () => {
                     prefixIcon="grid"
                     href="/work"
                     selected={pathname.startsWith("/work")}
+                  />
+                </>
+              )}
+              {routes["/about#skills"] && (
+                <>
+                  <ToggleButton
+                    className="s-flex-hide"
+                    prefixIcon="code"
+                    href="/about#skills"
+                    label={skill.label}
+                    selected={pathname.startsWith("/about#skills")}
+                  />
+                  <ToggleButton
+                    className="s-flex-show"
+                    prefixIcon="code"
+                    href="/about#skills"
+                    selected={pathname.startsWith("/about#skills")}
+                  />
+                </>
+              )}
+              {routes["/about#contact"] && (
+                <>
+                  <ToggleButton
+                    className="s-flex-hide"
+                    prefixIcon="email"
+                    href="/about#contact"
+                    label={contact.label}
+                    selected={pathname.startsWith("/about#contact")}
+                  />
+                  <ToggleButton
+                    className="s-flex-show"
+                    prefixIcon="email"
+                    href="/about#contact"
+                    selected={pathname.startsWith("/about#contact")}
                   />
                 </>
               )}
