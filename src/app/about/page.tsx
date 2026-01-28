@@ -192,10 +192,9 @@ export default function About() {
                 {social.map(
                   (item) =>
                     item.link && (
-                        <>
+                        <Flex key={item.name} gap="0">
                             <Button
                                 className="s-flex-hide"
-                                key={item.name}
                                 href={item.link}
                                 prefixIcon={item.icon}
                                 label={item.name}
@@ -205,12 +204,11 @@ export default function About() {
                             <IconButton
                                 className="s-flex-show"
                                 size="l"
-                                key={`${item.name}-icon`}
                                 href={item.link}
                                 icon={item.icon}
                                 variant="secondary"
                             />
-                        </>
+                        </Flex>
                     ),
                 )}
               </Flex>
@@ -324,7 +322,7 @@ export default function About() {
               </Heading>
               <Column fillWidth gap="l">
                 {about.technical.skills.map((skill, index) => (
-                  <Column key={`${skill}-${index}`} fillWidth gap="4">
+                  <Column key={`${skill.title}-${index}`} fillWidth gap="4">
                     <Text variant="heading-strong-l">{skill.title}</Text>
                     <Text variant="body-default-m" onBackground="neutral-weak">
                       {skill.description}

@@ -56,19 +56,19 @@ const home = {
   headline: <>Fullstack Engineer & GenAI Specialist</>,
   subline: (
     <>
-      I'm Peter Tam, a Senior Programmer at{" "}
+      I'm Peter Tam, a Full Stack Developer at{" "}
       <InlineCode>
         <Link
-          href="https://finance.yahoo.com/quote/0450.HK/"
+          href="https://www.doglastrading.com/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Hung Hing Printing Group Limited
+          Doglas Trading Inc.
         </Link>
       </InlineCode>
       . I specialize in integrating <strong>Generative AI into enterprise systems</strong>,
       building production-ready LLM features for ERP workflows, and creating
-      modern web applications with React and Next.js.
+      modern web applications with React, Next.js, and Python.
     </>
   ),
 };
@@ -93,10 +93,11 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Peter is a Canada-based FullStack Developer with a passion for
-        innovative technologies and user-centric design. He has over 3 years of
-        experience in the industry and has worked on a variety of projects, from
-        small startups to large corporations.
+        Peter is a Canada-based Full Stack Developer with extensive experience in building
+        modern web applications using JavaScript, TypeScript, React, and Next.js, with strong
+        backend integration in Python and PHP. Proven ability to design, implement, and deliver
+        robust, user-centric solutions in Agile/Scrum environments. Adept at working with
+        large-scale codebases and mentoring junior developers.
       </>
     ),
   },
@@ -105,41 +106,83 @@ const about = {
     title: "Work Experience",
     experiences: [
       {
-        company: "Hung Hing Printing Group Limited",
-        timeframe: "2023 - Present",
-        role: "Senior Porgrammer",
+        company: "Doglas Trading Inc.",
+        timeframe: "Apr 2025 - Present",
+        role: "Full Stack Developer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20%
-            increase in user engagement and 30% faster load times.
+            Designed and delivered a full-stack ERP system using JavaScript/TypeScript
+            and Python-based backend services.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows,
-            enabling designers to iterate 50% faster.
+            Built and integrated REST APIs to support frontend workflows, reporting,
+            and third-party services.
+          </>,
+          <>
+            Implemented CI/CD pipelines using GitHub, enabling automated testing,
+            build, and deployment.
+          </>,
+          <>
+            Deployed containerized applications using Docker and Kubernetes.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Hung Hing Printing Group Limited",
+        timeframe: "Jul 2023 - Apr 2025",
+        role: "Senior Programmer",
+        achievements: [
+          <>
+            Designed and implemented complex ERP modules using Python (Odoo),
+            including Estimation, Quotation, and Delivery workflows.
+          </>,
+          <>
+            Built a full-stack Payroll system with modern frontend (React / Next.js)
+            and Python backend.
+          </>,
+          <>
+            Worked in an Agile environment, collaborating closely with stakeholders
+            to iterate features from design to production.
           </>,
         ],
         images: [
-          // optional: leave the array empty if you don't want to display images
           {
             src: "/images/projects/project-01/cover-01.png",
-            alt: "Once UI Project",
+            alt: "ERP Project",
             width: 16,
             height: 9,
           },
         ],
       },
       {
-        company: "At-Vibe Technology Limited",
-        timeframe: "2022 - 2023",
-        role: "Software Engineer",
+        company: "AT-Vibe Technology Limited",
+        timeframe: "Jun 2022 - Jul 2023",
+        role: "Software Engineer (Part-Time)",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple
-            platforms, improving design consistency by 40%.
+            Developed frontend modules and enhanced integrations between the Booking
+            System, Webex, and Microsoft Calendar using PHP and REST APIs.
           </>,
           <>
-            Led a cross-functional team to launch a new product line,
-            contributing to a 15% increase in overall company revenue.
+            Led client-facing prototype development, pre-sales demos, and authored
+            comprehensive API documentation.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "K.KS Marketing Group",
+        timeframe: "Mar 2022 - Jun 2022",
+        role: "Web Developer (Part-Time)",
+        achievements: [
+          <>
+            Built responsive websites from UI design to deployment using HTML5,
+            CSS3, JavaScript, and PHP.
+          </>,
+          <>
+            Implemented SEO best practices to enhance search engine rankings and
+            site visibility.
           </>,
         ],
         images: [],
