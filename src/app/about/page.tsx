@@ -292,22 +292,22 @@ export default function About() {
                       )}
                     </Column>
                     {experience.images.length > 0 && (
-                      <Flex fillWidth paddingTop="m" paddingLeft="40" wrap>
+                      <Flex fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
                         {experience.images.map((image, index) => (
                           <Flex
                             key={index}
                             border="neutral-medium"
                             radius="m"
-                            //@ts-ignore
-                            minWidth={image.width}
-                            //@ts-ignore
-                            height={image.height}
+                            style={{
+                              //@ts-ignore
+                              aspectRatio: `${image.width} / ${image.height}`,
+                              width: "100%",
+                              maxWidth: "20rem",
+                            }}
                           >
                             <SmartImage
                               enlarge
                               radius="m"
-                              //@ts-ignore
-                              sizes={image.width.toString()}
                               //@ts-ignore
                               alt={image.alt}
                               //@ts-ignore
@@ -391,16 +391,16 @@ export default function About() {
                             key={index}
                             border="neutral-medium"
                             radius="m"
-                            //@ts-ignore
-                            minWidth={image.width}
-                            //@ts-ignore
-                            height={image.height}
+                            style={{
+                              //@ts-ignore
+                              aspectRatio: `${image.width} / ${image.height}`,
+                              width: "100%",
+                              maxWidth: "20rem",
+                            }}
                           >
                             <SmartImage
                               enlarge
                               radius="m"
-                              //@ts-ignore
-                              sizes={image.width.toString()}
                               //@ts-ignore
                               alt={image.alt}
                               //@ts-ignore

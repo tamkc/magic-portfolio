@@ -66,7 +66,7 @@ const home = {
           Doglas Trading Inc.
         </Link>
       </InlineCode>
-      . I specialize in integrating{" "}
+      I specialize in integrating{" "}
       <strong>Generative AI into enterprise systems</strong>, building
       production-ready LLM features for ERP workflows, and creating modern web
       applications with React, Next.js, and Python, Node.js.
