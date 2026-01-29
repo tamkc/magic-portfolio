@@ -4,8 +4,7 @@ import { baseURL } from "@/app/resources";
 import { gallery, person } from "@/app/resources/content";
 
 export async function generateMetadata() {
-  const title = gallery.title;
-  const description = gallery.description;
+  const { title, description } = gallery;
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   return {
