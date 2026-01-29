@@ -69,7 +69,7 @@ const home = {
       I specialize in integrating{" "}
       <strong>Generative AI into enterprise systems</strong>, building
       production-ready LLM features for ERP workflows, and creating modern web
-      applications with React, Next.js, and Python, Node.js.
+      applications with React, Next.js, Node.js, and Python.
     </>
   ),
 };
