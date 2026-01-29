@@ -281,7 +281,7 @@ const gallery = {
       orientation: "vertical",
     },
     {
-      src: "/images/hunghing-01.jpg",
+      src: "/images/gallery/img-17.jpg",
       alt: "image",
       orientation: "horizontal",
     },
@@ -342,6 +342,11 @@ const gallery = {
     },
     {
       src: "/images/gallery/img-14.jpg",
+      alt: "image",
+      orientation: "horizontal",
+    },
+    {
+      src: "/images/gallery/img-16.jpg",
       alt: "image",
       orientation: "horizontal",
     },
