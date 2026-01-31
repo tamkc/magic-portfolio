@@ -1,89 +1,92 @@
-# **Build your portfolio with Once UI's Magic Portfolio**
+# **Peter Tam's Portfolio**
 
-View the [demo here](https://demo.magic-portfolio.com).
+My personal portfolio website showcasing my work as a Fullstack Developer & GenAI Specialist.
 
-![Magic Portfolio](public/images/cover.png)
+Built with [Once UI](https://once-ui.com) Magic Portfolio for [Next.js](https://nextjs.org).
 
+# **Tech Stack**
 
-# **Getting started**
+- **Framework:** Next.js 15 with React 19 and TypeScript
+- **UI:** Once UI design system, Tailwind CSS, SCSS
+- **Content:** MDX for blog posts and project pages
+- **Animations:** Motion library, tsparticles
+- **Forms:** Formspree integration for newsletter and contact
+- **Deployment:** Static export via GitHub Pages (GitHub Actions CI/CD)
 
-Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
+# **Sections**
 
-**1. Clone the repository**
-```
-git clone https://github.com/once-ui-system/magic-portfolio.git
-```
+| Page | Description |
+|------|-------------|
+| **Home** | Hero section, expertise highlights, featured projects, latest blog posts |
+| **About** | Introduction, work experience, education, skills, and contact form |
+| **Work** | Project showcases with detailed case studies |
+| **Blog** | Articles on React, Next.js, GenAI, and more |
+| **Gallery** | Masonry photo gallery with lightbox viewer |
 
-**2. Install dependencies**
+# **Getting Started**
+
+Requires Node.js v18.17+.
+
+**1. Install dependencies**
 ```
 npm install
 ```
 
-**3. Run dev server**
+**2. Run dev server**
 ```
 npm run dev
 ```
 
-**4. Edit config**
+**3. Build for production**
 ```
-src/app/resources/config
-```
-
-**5. Edit content**
-```
-src/app/resources/content
+npm run build
 ```
 
-**6. Create blog posts / projects**
+# **Project Structure**
+
 ```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
+src/
+├── app/
+│   ├── resources/
+│   │   ├── config.js        # Site configuration (routes, theme, effects)
+│   │   └── content.js       # Personal info, social links, page content
+│   ├── blog/posts/          # MDX blog posts
+│   ├── work/projects/       # MDX project pages
+│   ├── about/               # About page
+│   └── gallery/             # Photo gallery page
+├── components/              # React components
+│   ├── home/                # Home page components
+│   ├── blog/                # Blog components
+│   ├── work/                # Work/project components
+│   ├── about/               # About page components
+│   └── gallery/             # Gallery components (masonry, lightbox)
+└── once-ui/                 # Once UI design system
 ```
 
-# **Features**
+# **Configuration**
 
-## **Once UI**
-- All tokens, components & features of [Once UI](https://once-ui.com)
+**Site settings** — `src/app/resources/config.js`
+- Theme (dark/light), color scheme, visual effects
+- Route visibility, password-protected pages
 
-## **SEO**
-- Automatic open-graph and X image generation with next/og
-- Automatic schema and metadata generation based on the content file
+**Content** — `src/app/resources/content.js`
+- Personal details, social links, work experience, education
+- Newsletter and gallery settings
 
-## **Design**
-- Responsive layout optimized for all screen sizes
-- Timeless design without heavy animations and motion
-- Endless customization options through [data attributes](https://once-ui.com/docs/theming)
+**Blog posts** — add `.mdx` files to `src/app/blog/posts/`
 
-## **Content**
-- Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and about / CV
-- Generate and display social links automatically
-- Set up password protection for URLs
+**Projects** — add `.mdx` files to `src/app/work/projects/`
 
-## **Localization**
-- A localized version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
+# **Connect**
 
-# **Authors**
+- GitHub: [tamkc](https://github.com/tamkc)
+- LinkedIn: [Kam Chuen Tam](https://www.linkedin.com/in/kam-chuen-tam/)
+- Email: tamkcatwork@gmail.com
 
-Connect with us on Threads or LinkedIn.
+# **Credits**
 
-Lorant Toth: [Threads](https://www.threads.net/@lorant.one), [LinkedIn](https://www.linkedin.com/in/tothlorant/)  
-Zsofia Komaromi: [Threads](https://www.threads.net/@zsofia_kom), [LinkedIn](https://www.linkedin.com/in/zsofiakomaromi/)
-
-Localization added by [François Hernandez](https://github.com/francoishernandez)
-
-# **Get involved**
-
-- Join the [FullStack Developers Club on Discord](https://discord.com/invite/5EyAQ4eNdS) and share your portfolio with us!
-- Report a [bug](https://github.com/once-ui-system/magic-portfolio/issues/new?labels=bug&template=bug_report.md).
+Built on [Magic Portfolio](https://github.com/once-ui-system/magic-portfolio) by [Once UI](https://once-ui.com).
 
 # **License**
 
-Distributed under the CC BY-NC 4.0 License.
-- Commercial usage is not allowed.
-- Attribution is required.
-
-See `LICENSE.txt` for more information.
-
-# **Deploy with Vercel**
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fcover.png)
+Distributed under the CC BY-NC 4.0 License. See `LICENSE.txt` for more information.
